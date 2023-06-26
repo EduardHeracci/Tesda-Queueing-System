@@ -1,5 +1,5 @@
 import { Personnel } from 'src/personnel/entities/personnel.entity';
-import { Qualification } from 'src/qualification/entities/qualification.entity';
+import { Sector } from 'src/sector/entities/sector.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -58,6 +58,6 @@ export class TraineeInfo {
   @ManyToOne(() => Personnel, (personnel) => personnel.traineeInfo)
   personnel: Personnel;
 
-  @ManyToOne(() => Qualification, (qualification) => qualification.traineeInfo)
-  qualification: Qualification;
+  @ManyToOne(() => Sector, (sector) => sector.traineeInfo)
+  sector: Sector;
 }

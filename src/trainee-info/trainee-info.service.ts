@@ -27,7 +27,10 @@ export class TraineeInfoService {
   async findAll(): Promise<TraineeInfo[]> {
     try {
       return await this.traineeInfoRepository.find({
-        relations: ['personnel', 'qualification'],
+        relations: [
+          'personnel',
+          'sector.qualification.nationalCertificateLevel',
+        ],
       });
     } catch (error) {
       throw new NotFoundException();
@@ -37,8 +40,11 @@ export class TraineeInfoService {
   async findOne(id: number): Promise<TraineeInfo> {
     try {
       return await this.traineeInfoRepository.findOneOrFail({
-        relations: ['personnel', 'qualification'],
         where: { id },
+        relations: [
+          'personnel',
+          'sector.qualification.nationalCertificateLevel',
+        ],
       });
     } catch (error) {
       throw new NotFoundException();

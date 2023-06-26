@@ -7,6 +7,8 @@ import { TraineeInfoModule } from './trainee-info/trainee-info.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DatabaseConfiguration } from './configuration/database.configuration';
+import { NationalCertificateLevelModule } from './national-certificate-level/national-certificate-level.module';
+import { SectorModule } from './sector/sector.module';
 
 @Module({
   imports: [
@@ -15,6 +17,8 @@ import { DatabaseConfiguration } from './configuration/database.configuration';
     PersonnelModule,
     QualificationModule,
     TraineeInfoModule,
+    NationalCertificateLevelModule,
+    SectorModule,
   ],
   controllers: [AppController],
   providers: [AppService],
