@@ -9,6 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DatabaseConfiguration } from './configuration/database.configuration';
 import { NationalCertificateLevelModule } from './national-certificate-level/national-certificate-level.module';
 import { SectorModule } from './sector/sector.module';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { SectorModule } from './sector/sector.module';
     TraineeInfoModule,
     NationalCertificateLevelModule,
     SectorModule,
+    AuthenticationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
