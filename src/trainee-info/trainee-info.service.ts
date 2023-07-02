@@ -29,7 +29,8 @@ export class TraineeInfoService {
       return await this.traineeInfoRepository.find({
         relations: [
           'personnel',
-          'sector.qualification.nationalCertificateLevel',
+          'qualification.nationalCertificateLevel',
+          'qualification.sector',
         ],
       });
     } catch (error) {
@@ -43,7 +44,8 @@ export class TraineeInfoService {
         where: { id },
         relations: [
           'personnel',
-          'sector.qualification.nationalCertificateLevel',
+          'qualification.nationalCertificateLevel',
+          'qualification.sector',
         ],
       });
     } catch (error) {

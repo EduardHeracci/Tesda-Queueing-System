@@ -25,9 +25,7 @@ export class SectorService {
 
   async findAll(): Promise<Sector[]> {
     try {
-      return await this.sectorRepository.find({
-        relations: ['qualification.nationalCertificateLevel'],
-      });
+      return await this.sectorRepository.find({});
     } catch (error) {
       throw new NotFoundException();
     }
@@ -37,7 +35,6 @@ export class SectorService {
     try {
       return await this.sectorRepository.findOneOrFail({
         where: { id },
-        relations: ['qualification.nationalCertificateLevel'],
       });
     } catch (error) {
       throw new NotFoundException();

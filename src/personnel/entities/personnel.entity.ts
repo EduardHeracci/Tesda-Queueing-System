@@ -21,6 +21,9 @@ export class Personnel {
   @Column()
   password: string;
 
+  @Column()
+  role: string;
+
   @OneToMany(() => TraineeInfo, (traineeInfo) => traineeInfo.personnel)
   traineeInfo: TraineeInfo[];
 }

@@ -15,4 +15,7 @@ export class CreatePersonnelDto {
 
   @IsOptional()
   password: string;
+
+  @IsOptional()
+  role: string;
 }
