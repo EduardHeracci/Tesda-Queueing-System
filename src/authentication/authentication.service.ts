@@ -55,11 +55,7 @@ export class AuthenticationService {
       }),
     ]);
     await this.refreshTokenIdsStorage.insert(user.id, refreshTokenId);
-    return {
-      accessToken,
-      refreshToken,
-      user,
-    };
+    return { accessToken, refreshToken, user };
   }
 
   async refreshTokens(refreshTokenDto: RefreshTokenDto) {

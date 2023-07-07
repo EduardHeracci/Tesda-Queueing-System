@@ -22,38 +22,33 @@ export class AuthenticationController {
   async signIn(
     @Res({ passthrough: true }) response: Response,
     @Req() request: Request,
-    @Body() signInDto: CreatePersonnelDto, // @Res ({ passthrough: true }) response: Response,
+    @Body() signInDto: CreatePersonnelDto,
   ) {
     const { accessToken, refreshToken, user } =
       await this.authenticationService.signIn(signInDto);
     await promisify(request.login).call(request, user);
-    response.cookie('accessToken', accessToken, {
-      secure: false,
-      httpOnly: true,
-      sameSite: true,
-    });
-    response.cookie('refreshToken', refreshToken, {
-      secure: false,
-      httpOnly: true,
-      sameSite: true,
-    });
+
+    response.setHeader('X-Access-Token', accessToken);
+    response.setHeader('X-Refresh-Token', refreshToken);
   }
 
   @HttpCode(HttpStatus.OK)
   @Post('refresh-tokens')
   async refreshTokens(
     @Res({ passthrough: true }) response: Response,
+    @Req() request: Request,
     @Body() refreshTokenDto: RefreshTokenDto,
   ) {
-    const { accessToken, refreshToken } =
+    const { accessToken, refreshToken, user } =
       await this.authenticationService.refreshTokens(refreshTokenDto);
+    await promisify(request.login).call(request, user);
     response.cookie('accessToken', accessToken, {
-      secure: false,
+      secure: true,
       httpOnly: true,
       sameSite: true,
     });
     response.cookie('refreshToken', refreshToken, {
-      secure: false,
+      secure: true,
       httpOnly: true,
       sameSite: true,
     });

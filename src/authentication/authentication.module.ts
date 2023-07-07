@@ -39,8 +39,9 @@ export class AuthenticationModule implements NestModule {
           resave: false,
           saveUninitialized: false,
           cookie: {
+            secure: true,
             sameSite: true,
-            httpOnly: true,
+            httpOnly: false,
           },
         }),
         passport.initialize(),
